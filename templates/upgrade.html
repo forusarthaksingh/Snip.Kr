@@ -1,0 +1,409 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="upgrade-container">
+    <div class="upgrade-header">
+        <h1>🚀 Upgrade to Premium</h1>
+        <p>Unlock powerful features and take your URL shortening to the next level</p>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-back">← Back to Dashboard</a>
+    </div>
+
+    <div class="pricing-section">
+        <div class="pricing-card premium">
+            <div class="pricing-badge">Most Popular</div>
+            <h2>Premium Plan</h2>
+            <div class="price">
+                <span class="currency">₹</span>
+                <span class="amount">199</span>
+                <span class="period">/month</span>
+            </div>
+            <p class="price-note">Billed monthly • Cancel anytime</p>
+            
+            <div class="features-list">
+                <h3>Everything in Free, plus:</h3>
+                <ul>
+                    <li>✅ Unlimited URL shortening (no 200 limit)</li>
+                    <li>✅ Custom short codes (your-brand/your-link)</li>
+                    <li>✅ Advanced analytics dashboard</li>
+                    <li>✅ Real-time click tracking</li>
+                    <li>✅ Geographic location tracking</li>
+                    <li>✅ Device & browser analytics</li>
+                    <li>✅ Referrer tracking</li>
+                    <li>✅ Priority support</li>
+                    <li>✅ No ads</li>
+                    <li>✅ Bulk URL management</li>
+                </ul>
+            </div>
+
+            <div class="upgrade-cta">
+                <div class="coming-soon-banner">
+                    <span class="coming-soon-text">🔥 Upgrade Available Soon!</span>
+                    <p>We're putting the finishing touches on our premium features</p>
+                </div>
+                
+                <button class="btn btn-primary btn-large" disabled>
+                    🎯 Upgrade Now - ₹199/month
+                </button>
+                
+                <p class="notification-text">We'll notify you when premium is available</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="comparison-section">
+        <h2>Plan Comparison</h2>
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Free Plan</th>
+                        <th>Premium Plan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>URL Shortening</td>
+                        <td>200 URLs</td>
+                        <td>Unlimited</td>
+                    </tr>
+                    <tr>
+                        <td>Custom Short Codes</td>
+                        <td>❌ Not Available</td>
+                        <td>✅ Available</td>
+                    </tr>
+                    <tr>
+                        <td>Advanced Analytics</td>
+                        <td>Basic</td>
+                        <td>Full Dashboard</td>
+                    </tr>
+                    <tr>
+                        <td>Real-time Tracking</td>
+                        <td>❌</td>
+                        <td>✅</td>
+                    </tr>
+                    <tr>
+                        <td>Geographic Data</td>
+                        <td>❌</td>
+                        <td>✅</td>
+                    </tr>
+                    <tr>
+                        <td>Device Analytics</td>
+                        <td>Basic</td>
+                        <td>Detailed</td>
+                    </tr>
+                    <tr>
+                        <td>Priority Support</td>
+                        <td>❌</td>
+                        <td>✅</td>
+                    </tr>
+                    <tr>
+                        <td>Ad-free Experience</td>
+                        <td>❌</td>
+                        <td>✅</td>
+                    </tr>
+                    <tr>
+                        <td>Price</td>
+                        <td>Free</td>
+                        <td>₹199/month</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <h3>When will premium features be available?</h3>
+            <p>We're working hard to launch premium features soon! Follow our updates for the exact launch date.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Can I pay annually for a discount?</h3>
+            <p>Yes! We'll offer annual plans with significant discounts when we launch.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Will my existing URLs be affected?</h3>
+            <p>No, all your existing URLs will continue to work perfectly after upgrading.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Is there a free trial?</h3>
+            <p>We'll offer a 7-day free trial when premium features launch.</p>
+        </div>
+    </div>
+
+    <div class="contact-section">
+        <h2>Need More Information?</h2>
+        <p>Have questions about our premium plans? We'd love to hear from you!</p>
+        <a href="mailto:support@urlshortener.com" class="btn btn-outline">📧 Contact Support</a>
+    </div>
+</div>
+
+<style>
+.upgrade-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.upgrade-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.upgrade-header h1 {
+    font-size: 2.5em;
+    color: #4361ee;
+    margin-bottom: 10px;
+}
+
+.upgrade-header p {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.pricing-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.pricing-card {
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+}
+
+.pricing-badge {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.pricing-card h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.price {
+    margin: 30px 0;
+}
+
+.currency {
+    font-size: 1.5em;
+    vertical-align: super;
+    color: #4361ee;
+}
+
+.amount {
+    font-size: 3.5em;
+    font-weight: bold;
+    color: #4361ee;
+}
+
+.period {
+    font-size: 1.2em;
+    color: #666;
+}
+
+.price-note {
+    color: #888;
+    margin-bottom: 30px;
+}
+
+.features-list {
+    text-align: left;
+    margin: 30px 0;
+}
+
+.features-list h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.features-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.features-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    color: #555;
+}
+
+.features-list li:last-child {
+    border-bottom: none;
+}
+
+.upgrade-cta {
+    margin-top: 30px;
+}
+
+.coming-soon-banner {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.coming-soon-text {
+    font-size: 1.3em;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.btn-large {
+    padding: 15px 30px;
+    font-size: 1.1em;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.notification-text {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.comparison-section {
+    margin: 50px 0;
+}
+
+.comparison-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.comparison-table {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.comparison-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.comparison-table th {
+    background: #f8f9fa;
+    font-weight: bold;
+    color: #333;
+}
+
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+
+.comparison-table td:first-child {
+    text-align: left;
+    font-weight: 500;
+}
+
+.faq-section {
+    margin: 50px 0;
+}
+
+.faq-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.faq-item {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.faq-item h3 {
+    color: #4361ee;
+    margin-bottom: 10px;
+}
+
+.contact-section {
+    text-align: center;
+    margin: 50px 0;
+    padding: 40px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+}
+
+.contact-section h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.contact-section p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid #4361ee;
+    color: #4361ee;
+    padding: 12px 25px;
+}
+
+.btn-outline:hover {
+    background: #4361ee;
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .upgrade-container {
+        padding: 15px;
+    }
+    
+    .pricing-card {
+        padding: 25px;
+    }
+    
+    .amount {
+        font-size: 2.5em;
+    }
+    
+    .comparison-table {
+        overflow-x: auto;
+    }
+    
+    .comparison-table table {
+        min-width: 500px;
+    }
+}
+</style>
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Flash messages container -->
+<div id="flash-messages" class="flash-messages">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message flash-{{ category }}" data-timeout="5000">
+                    {{ message }}
+                    <span class="flash-close">&times;</span>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+<div class="dashboard-container">
+    <header class="dashboard-header">
+        <h1>Welcome, {{ user.username|e }}!</h1>
+        <div class="header-actions">
+            <a href="{{ url_for('logout') }}" class="btn btn-logout">Logout</a>
+            {% if not user.is_premium %}
+            <a href="{{ url_for('upgrade') }}" class="btn btn-upgrade">Upgrade to Premium</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <div class="url-form-container">
+        <h2>Shorten a URL</h2>
+        <form method="POST" class="url-form" id="urlForm">
+            <div class="form-group">
+                <input type="text" name="original_url" id="original_url" 
+                       placeholder="Enter website URL (example.com or https://example.com)" 
+                       required title="Enter a valid website URL">
+                <p class="hint">You can enter with or without http:// or https://</p>
+            </div>
+            {% if user.is_premium %}
+            <div class="form-group">
+                <input type="text" name="custom_code" placeholder="Enter custom code (letters, numbers, - _ only)"
+                       pattern="[a-zA-Z0-9_-]{3,20}" title="Only letters, numbers, hyphens, and underscores (3-20 characters)">
+                <p class="hint">Allowed: letters, numbers, hyphens, underscores</p>
+            </div>
+            {% endif %}
+            <button type="submit" class="btn btn-primary">Shorten</button>
+        </form>
+    </div>
+
+    <div class="url-list-container">
+        <h2>Your Short URLs</h2>
+        <div class="url-list">
+            {% for url in urls %}
+            <div class="url-item">
+                <div class="url-info">
+                    <div class="short-url">
+                        <a href="{{ url_for('redirect_to_url', short_code=url.short_code, _external=True) }}" target="_blank"
+                           class="short-link" data-short-code="{{ url.short_code|e }}">
+                            {{ request.host_url }}{{ url.short_code|e }}
+                        </a>
+                       <!-- <button class="btn-copy" data-full-url="{{ url_for('redirect_to_url', short_code=url.short_code, _external=True) }}">
+                            Copy
+                        </button>-->
+                    </div>
+                    <div class="original-url">
+                        <span title="{{ url.original_url|e }}">
+                            {{ url.original_url|truncate(60)|e }}
+                        </span>
+                    </div>
+                    <div class="url-meta">
+                        <span class="clicks">{{ url.clicks }} clicks</span>
+                        <span class="date">{{ url.created_at.strftime('%Y-%m-%d') }}</span>
+                        {% if url.is_custom %}<span class="custom-tag">Custom</span>{% endif %}
+                    </div>
+                </div>
+                <div class="url-actions">
+                    <!-- Analytics button - AVAILABLE FOR FREE USERS -->
+                    <!-- <a href="{{ url_for('analytics', url_id=url.id) }}" class="btn btn-analytics">
+                        📊 Analytics
+                    </a> -->
+                    <a href="{{ url_for('delete_url', url_id=url.id) }}" class="btn btn-danger"
+                       onclick="return confirm('Are you sure you want to delete this URL?')">
+                       Delete
+                    </a>
+                </div>
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <p>You haven't created any short URLs yet.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="plan-info">
+        {% if user.is_premium %}
+        <p class="premium-badge">⭐ Premium User (Unlimited URLs + Custom Codes)</p>
+        {% else %}
+        <p>Free Plan ({{ 200 - urls|length }} URLs remaining) - Analytics Included!</p>
+       
+        {% endif %}
+    </div>
+</div>
+
+<script>
+// ... (keep all the existing JavaScript from previous dashboard.html) ...
+</script>
+{% endblock %}
